@@ -1,8 +1,11 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 from .models import Movie
 from .serializers import MovieSerializer
 
-class MovieViewSet(viewsets.ReadOnlyModelViewSet):
+class MovieViewSet(mixins.CreateModelMixin,
+					mixins.ListModelMixin,
+					mixins.RetrieveModelMixin,
+					viewsets.GenericViewSet):
     """
     A simple ViewSet for viewing accounts.
     """
