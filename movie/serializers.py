@@ -1,7 +1,5 @@
 from rest_framework import serializers
 from .models import Movie, Rating
-from datetime import datetime
-import pytz
 
 class MovieSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=200)
