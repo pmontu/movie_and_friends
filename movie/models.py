@@ -4,16 +4,20 @@ from django.db import models
 
 # Create your models here.
 class Movie(models.Model):
-	name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
 
 class Rating(models.Model):
-	STAR_CONVERSION = (
+    STAR_CONVERSION = (
             (1, 'one'),
             (2, 'two'),
             (3, 'three'),
             (4, 'four'),
             (5, 'five'),
         )
-	value = models.PositiveSmallIntegerField(choices=STAR_CONVERSION)
-	movie = models.ForeignKey(Movie)
-	text = models.CharField(max_length=2000)
+    rating = models.PositiveSmallIntegerField(
+        choices=STAR_CONVERSION,
+        blank=False)
+    movie = models.ForeignKey(Movie, blank=False)
+    review = models.CharField(max_length=2000)
+    created     = models.DateTimeField(editable=False)
+    modified    = models.DateTimeField()
