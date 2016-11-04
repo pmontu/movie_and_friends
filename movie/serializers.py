@@ -22,38 +22,23 @@ class MovieSerializer(serializers.Serializer):
         fields = ["id", "name"]
 
 
-class RatingSeriallizer(serializers.Serializer):
+class RatingSerializer(serializers.Serializer):
     rating = serializers.ChoiceField(Rating.STAR_CONVERSION)
     id = serializers.ReadOnlyField()
     movie = serializers.SlugRelatedField(
         read_only=True,
         slug_field="name")
 
-    def create(self, validated_data):
-        import ipdb; ipdb.set_trace()
-        validated_data["movie"] = Movie.objects.get(id=validated_data["movie"])
-        rating = Rating(**validated_data)
-        rating.created = datetime.now(pytz.UTC)
-        rating.modified = datetime.now(pytz.UTC)
-        rating.save()
-        return rating
 
-
-class RatingPostSeriallizer(serializers.Serializer):
-    # rating = serializers.ChoiceField(Rating.STAR_CONVERSION)
-    # id = serializers.ReadOnlyField()
-    # movie = MovieSerializer()
+class RatingPostSerializer(serializers.Serializer):
+    rating = serializers.ChoiceField(Rating.STAR_CONVERSION)
+    movie = MovieSerializer()
 
     def create(self, validated_data):
-        import ipdb; ipdb.set_trace()
-        validated_data["movie"] = Movie.objects.get(id=validated_data["movie"])
+        movie_data = validated_data.pop('movie')
+        movie = Movie.objects.get(name=movie_data["name"])
+        validated_data["movie"] = movie
         rating = Rating(**validated_data)
-        rating.created = datetime.now(pytz.UTC)
-        rating.modified = datetime.now(pytz.UTC)
         rating.save()
         return rating
-
-    class Meta:
-        model = Rating
-        fields = ["movie", "rating", "id"]
 

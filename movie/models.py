@@ -4,7 +4,7 @@ from django.db import models
 
 # Create your models here.
 class Movie(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
 
 class Rating(models.Model):
     STAR_CONVERSION = (
@@ -19,5 +19,3 @@ class Rating(models.Model):
         blank=False)
     movie = models.ForeignKey(Movie, blank=False)
     review = models.CharField(max_length=2000)
-    created     = models.DateTimeField(editable=False)
-    modified    = models.DateTimeField()
