@@ -3,8 +3,13 @@ from .models import Movie
 
 class MovieSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=200)
-    
+    id = serializers.ReadOnlyField()
+
     def create(self, validated_data):
         movie = Movie(**validated_data)
         movie.save()
         return movie
+    
+    class Meta:
+    	model = Movie
+    	fields = ["id", "name"]
