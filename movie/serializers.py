@@ -9,6 +9,11 @@ class MovieSerializer(serializers.Serializer):
         movie = Movie(**validated_data)
         movie.save()
         return movie
+
+    def update(self, instance, validated_data):
+    	instance.name = validated_data.get("name", instance.name)
+    	instance.save()
+    	return instance
     
     class Meta:
     	model = Movie

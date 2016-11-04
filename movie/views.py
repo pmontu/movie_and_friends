@@ -3,6 +3,7 @@ from .models import Movie
 from .serializers import MovieSerializer
 
 class MovieViewSet(
+	mixins.UpdateModelMixin,
 	mixins.DestroyModelMixin,
 	mixins.CreateModelMixin,
 	mixins.ListModelMixin,

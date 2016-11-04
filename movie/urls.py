@@ -3,7 +3,7 @@ from django.conf.urls import url
 from .views import MovieViewSet
 
 movie_list = MovieViewSet.as_view({'get': 'list', 'post':'create'})
-movie_detail = MovieViewSet.as_view({'get': 'retrieve','delete':'destroy'})
+movie_detail = MovieViewSet.as_view({'get': 'retrieve','delete':'destroy','patch':'update'})
 
 urlpatterns = [
     url(r'^movie/$', movie_list),
