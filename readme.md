@@ -55,17 +55,9 @@ curl -X GET -H "Cache-Control: no-cache" -H "Postman-Token: b9e79967-7530-06d5-f
 
 #### Post Movie Review
 
-curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 5ac4030f-5f79-24b4-467d-ba443ed0ed4d" -d '{
-"rating": 5,
-"movie": {
-"id": 2,
-"name": "kodi"}
-}' "http://127.0.0.1:8000/ratings/"
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -H "Cache-Control: no-cache" -H "Postman-Token: 515e8229-256e-d46c-9d10-11739361ad9f" -d 'rating=4&movie=2' "http://127.0.0.1:8000/ratings/"
 
 {
-  "rating": 5,
-  "movie": {
-    "name": "kodi",
-    "id": 2
-  }
+  "rating": 1,
+  "movie": 5
 }
