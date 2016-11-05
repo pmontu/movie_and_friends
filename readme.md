@@ -61,3 +61,17 @@ curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -H "Cache-Cont
   "rating": 1,
   "movie": 5
 }
+
+### API at a glance
+
+GET     http://127.0.0.1:8000/movies/
+POST    http://127.0.0.1:8000/movies/
+GET     http://127.0.0.1:8000/movies/:movie_id/
+DELETE  http://127.0.0.1:8000/movies/:movie_id/
+PATCH   http://127.0.0.1:8000/movies/:movie_id/
+
+GET     http://127.0.0.1:8000/movies/:movie_id/ratings/
+POST    http://127.0.0.1:8000/ratings/
+GET     http://127.0.0.1:8000/ratings/:rating_id
+PATCH   http://127.0.0.1:8000/movies/:movie_id/ratings/:rating_id/
+DELETE  http://127.0.0.1:8000/movies/:movie_id/ratings/:rating_id/

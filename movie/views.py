@@ -1,7 +1,7 @@
 from rest_framework import viewsets, mixins
 from .models import Movie, Rating
 from .serializers import (
-    MovieSerializer, RatingSerializer, RatingPostSerializer)
+    RatingSerializer, MovieSerializer, RatingPostSerializer)
 from utils.mixins import MultiSerializerViewSetMixin
 
 
@@ -20,14 +20,16 @@ class MovieViewSet(
 
 class RatingViewSet(
     MultiSerializerViewSetMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.RetrieveModelMixin,
     mixins.CreateModelMixin,
     mixins.ListModelMixin,
     viewsets.GenericViewSet):
 
-    serializer_class = RatingSerializer
+    serializer_class = RatingPostSerializer
     serializer_action_classes = {
-                'list': RatingSerializer,
-               'create': RatingPostSerializer,
+               'update': RatingSerializer
             }
 
     def get_queryset(self):
