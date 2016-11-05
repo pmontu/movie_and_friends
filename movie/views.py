@@ -5,13 +5,7 @@ from .serializers import (
 from utils.mixins import MultiSerializerViewSetMixin
 
 
-class MovieViewSet(
-    mixins.UpdateModelMixin,
-    mixins.DestroyModelMixin,
-    mixins.CreateModelMixin,
-    mixins.ListModelMixin,
-    mixins.RetrieveModelMixin,
-    viewsets.GenericViewSet):
+class MovieViewSet(viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing accounts.
     """
@@ -20,12 +14,7 @@ class MovieViewSet(
 
 class RatingViewSet(
     MultiSerializerViewSetMixin,
-    mixins.UpdateModelMixin,
-    mixins.DestroyModelMixin,
-    mixins.RetrieveModelMixin,
-    mixins.CreateModelMixin,
-    mixins.ListModelMixin,
-    viewsets.GenericViewSet):
+    viewsets.ModelViewSet):
 
     serializer_class = RatingPostSerializer
     serializer_action_classes = {
