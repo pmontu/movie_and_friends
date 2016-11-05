@@ -91,4 +91,4 @@ ENV/
 
 .DS_Store
 db.sqlite3
-notebook.ipynb
+*.ipynb

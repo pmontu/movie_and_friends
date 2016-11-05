@@ -3,14 +3,15 @@ from .models import Movie, Rating
 from .serializers import (
     RatingSerializer, MovieSerializer, RatingPostSerializer)
 from utils.mixins import MultiSerializerViewSetMixin
-
+from django.db.models.aggregates import Sum, Count
 
 class MovieViewSet(viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing accounts.
     """
-    queryset = Movie.objects.all()
+    queryset = Movie.objects.annotate(sum_ratings=Sum("rating"),count_ratings=Count("rating"))
     serializer_class = MovieSerializer
+
 
 class RatingViewSet(
     MultiSerializerViewSetMixin,

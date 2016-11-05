@@ -5,6 +5,7 @@ from .models import Movie, Rating
 class MovieSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=200)
     id = serializers.ReadOnlyField()
+    average_rating = serializers.SerializerMethodField()
 
     def create(self, validated_data):
         movie = Movie(**validated_data)
@@ -15,6 +16,9 @@ class MovieSerializer(serializers.Serializer):
         instance.name = validated_data.get("name", instance.name)
         instance.save()
         return instance
+
+    def get_average_rating(self, obj):
+        return 0 if obj.sum_ratings is None else obj.sum_ratings / float(obj.count_ratings)
 
 
 class RatingPostSerializer(serializers.Serializer):

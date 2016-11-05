@@ -22,3 +22,6 @@ class Rating(models.Model):
         blank=False)
     movie = models.ForeignKey(Movie, blank=False)
     review = models.CharField(max_length=2000)
+
+    def __str__(self):
+        return "{0}".format(self.rating)
