@@ -1,0 +1,7 @@
+To Do
+
+user name password boxes - login screen
+	on success redirect to app
+
+rating must have user who is rating it
+movie must have photos

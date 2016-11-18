@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Movie, Rating
+from django.contrib.auth.models import User
 
 
 class MovieSerializer(serializers.Serializer):
@@ -24,6 +25,7 @@ class MovieSerializer(serializers.Serializer):
 class RatingPostSerializer(serializers.Serializer):
     rating = serializers.ChoiceField(Rating.STAR_CONVERSION)
     movie = serializers.PrimaryKeyRelatedField(queryset=Movie.objects.all())
+    # user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     id = serializers.ReadOnlyField()
     movie_name = serializers.SerializerMethodField()
 

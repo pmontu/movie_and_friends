@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Movie(models.Model):
@@ -22,6 +23,7 @@ class Rating(models.Model):
         blank=False)
     movie = models.ForeignKey(Movie, blank=False)
     review = models.CharField(max_length=2000)
+    # user = models.ForeignKey(User, blank=False, default=1)
 
     def __str__(self):
         return "{0}".format(self.rating)
